@@ -1,145 +1,130 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>For Kema 💕</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@400;500&display=swap" rel="stylesheet">
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    body {
-      height: 100vh;
-      background: linear-gradient(135deg, #fff0f5 0%, #ffe4e1 50%, #ffd1dc 100%);
-      font-family: 'Poppins', sans-serif;
-      color: #333;
-      overflow: hidden;
-      position: relative;
-      cursor: pointer;
-    }
-    .container {
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 30px;
-      position: relative;
-      z-index: 2;
-    }
-    .message {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: all 1.8s ease-out;
-      font-family: 'Playfair Display', serif;
-      font-size: 2.2rem;
-      line-height: 1.5;
-      color: #4a4a4a;
-      max-width: 90%;
-    }
-    .highlight {
-      color: #ff69b4;
-      font-weight: 700;
-    }
-    .shown {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    .small-hearts {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      overflow: hidden;
-      z-index: 1;
-    }
-    .heart-float {
-      position: absolute;
-      font-size: 1.4rem;
-      color: rgba(255, 105, 180, 0.7);
-      animation: float-up linear forwards;
-      pointer-events: none;
-    }
-    @keyframes float-up {
-      0%   { transform: translateY(100vh) translateX(0) rotate(0deg); opacity: 0.6; }
-      100% { transform: translateY(-120vh) translateX(30vw) rotate(360deg); opacity: 0; }
-    }
-    .confetti {
-      position: absolute;
-      width: 10px;
-      height: 10px;
-      background: #ff69b4;
-      border-radius: 50%;
-      animation: confetti-fall 5s linear forwards;
-      pointer-events: none;
-    }
-    @keyframes confetti-fall {
-      0%   { transform: translateY(-50vh) rotate(0deg); opacity: 0.8; }
-      100% { transform: translateY(120vh) rotate(720deg); opacity: 0; }
-    }
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>For Kema 💕</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    height: 100vh;
+    background: linear-gradient(135deg, #fff0f5 0%, #ffe4e1 50%, #ffd1dc 100%);
+    font-family: 'Poppins', sans-serif;
+    color: #333;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+  }
+  .container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 30px;
+    position: relative;
+    z-index: 2;
+  }
+  .message {
+    visibility: hidden;
+    transform: translateY(30px);
+    transition: all 1.8s ease-out;
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    line-height: 1.6;
+    color: #4a4a4a;
+    max-width: 90%;
+  }
+  .message div {
+    margin-bottom: 10px;
+  }
+  .highlight { color: #ff69b4; font-weight: 700; }
+  .shown { visibility: visible; transform: translateY(0); }
+  .small-hearts { position: absolute; width: 100%; height: 100%; pointer-events: none; overflow: hidden; z-index: 1; }
+  .heart-float {
+    position: absolute;
+    font-size: 1.4rem;
+    color: rgba(255, 105, 180, 0.7);
+    animation: float-up linear forwards;
+    pointer-events: none;
+  }
+  @keyframes float-up {
+    0%   { transform: translateY(100vh) translateX(0) rotate(0deg); opacity: 0.6; }
+    100% { transform: translateY(-120vh) translateX(30vw) rotate(360deg); opacity: 0; }
+  }
+  .confetti {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: #ff69b4;
+    border-radius: 50%;
+    animation: confetti-fall 5s linear forwards;
+    pointer-events: none;
+  }
+  @keyframes confetti-fall {
+    0%   { transform: translateY(-50vh) rotate(0deg); opacity: 0.8; }
+    100% { transform: translateY(120vh) rotate(720deg); opacity: 0; }
+  }
+</style>
 </head>
 <body>
 
-  <div class="small-hearts" id="hearts"></div>
+<div class="small-hearts" id="hearts"></div>
 
-  <div class="container">
-    <div class="message" id="message">
-      Hey Kema...<br>
-      I've been thinking about you a lot lately 💕<br>
-      These past few days you've made me so happy <br>
-      and I'd love for us to be more than friends.<br>
-      <span class="highlight">Will you be my girlfriend?</span>
-    </div>
+<div class="container">
+  <div class="message" id="message">
+    <div>Hey Kema...</div>
+    <div>I've been thinking about you a lot lately 💕</div>
+    <div>These past few days you've made me so happy</div>
+    <div>and I'd love for us to be more than friends.</div>
+    <div class="highlight">Will you be my girlfriend?</div>
   </div>
+</div>
 
-  <script>
-    const message = document.getElementById('message');
-    const heartsContainer = document.getElementById('hearts');
+<script>
+  const message = document.getElementById('message');
+  const heartsContainer = document.getElementById('hearts');
 
-    function revealMessage() {
-      message.classList.add('shown');
-      startFloatingHearts();
-    }
+  function revealMessage() {
+    message.classList.add('shown');
+    startFloatingHearts();
+  }
 
-    // Reveal message automatically when page loads
-    window.addEventListener('load', () => {
-      setTimeout(revealMessage, 800); // small delay for smooth effect
-    });
+  document.addEventListener('DOMContentLoaded', () => {
+    setTimeout(revealMessage, 300); 
+  });
 
-    function startFloatingHearts() {
-      setInterval(() => {
-        const heart = document.createElement('div');
-        heart.className = 'heart-float';
-        heart.innerHTML = '💗';
-        heart.style.left = Math.random() * 100 + 'vw';
-        heart.style.fontSize = (14 + Math.random() * 12) + 'px';
-        heart.style.animationDuration = (12 + Math.random() * 10) + 's';
-        heartsContainer.appendChild(heart);
-        setTimeout(() => heart.remove(), 25000);
-      }, 1200);
-    }
+  function startFloatingHearts() {
+    setInterval(() => {
+      const heart = document.createElement('div');
+      heart.className = 'heart-float';
+      heart.innerHTML = '💗';
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.fontSize = (14 + Math.random() * 12) + 'px';
+      heart.style.animationDuration = (12 + Math.random() * 10) + 's';
+      heartsContainer.appendChild(heart);
+      setTimeout(() => heart.remove(), 25000);
+    }, 1200);
+  }
 
-    // Light confetti on click after message is revealed
-    document.body.addEventListener('click', () => {
-      if (message.classList.contains('shown')) {
-        for (let i = 0; i < 40; i++) {
-          setTimeout(() => {
-            const conf = document.createElement('div');
-            conf.className = 'confetti';
-            conf.style.left = Math.random() * 100 + 'vw';
-            conf.style.background = ['#ff69b4', '#ffb6c1', '#ff1493'][Math.floor(Math.random()*3)];
-            conf.style.animationDuration = (4 + Math.random() * 3) + 's';
-            heartsContainer.appendChild(conf);
-            setTimeout(() => conf.remove(), 10000);
-          }, i * 80);
-        }
+  document.body.addEventListener('click', () => {
+    if (message.classList.contains('shown')) {
+      for (let i = 0; i < 40; i++) {
+        setTimeout(() => {
+          const conf = document.createElement('div');
+          conf.className = 'confetti';
+          conf.style.left = Math.random() * 100 + 'vw';
+          conf.style.background = ['#ff69b4', '#ffb6c1', '#ff1493'][Math.floor(Math.random()*3)];
+          conf.style.animationDuration = (4 + Math.random() * 3) + 's';
+          heartsContainer.appendChild(conf);
+          setTimeout(() => conf.remove(), 10000);
+        }, i * 80);
       }
-    });
-  </script>
+    }
+  });
+</script>
+
 </body>
 </html>
