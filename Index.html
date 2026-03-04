@@ -15,37 +15,31 @@
     overflow: hidden;
     position: relative;
     cursor: pointer;
-  }
-  .container {
-    height: 100%;
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
     text-align: center;
-    padding: 30px;
-    position: relative;
-    z-index: 2;
+    padding: 20px;
   }
   .message {
     visibility: hidden;
-    transform: translateY(30px);
-    transition: all 1.8s ease-out;
+    transform: translateY(20px);
+    transition: all 1.5s ease-out;
     font-family: 'Playfair Display', serif;
-    font-size: 2.2rem;
-    line-height: 1.6;
+    font-size: 1.6rem;  /* smaller size */
+    line-height: 1.4;
     color: #4a4a4a;
     max-width: 90%;
   }
   .message div {
-    margin-bottom: 10px;
+    margin-bottom: 8px;
   }
   .highlight { color: #ff69b4; font-weight: 700; }
   .shown { visibility: visible; transform: translateY(0); }
   .small-hearts { position: absolute; width: 100%; height: 100%; pointer-events: none; overflow: hidden; z-index: 1; }
   .heart-float {
     position: absolute;
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     color: rgba(255, 105, 180, 0.7);
     animation: float-up linear forwards;
     pointer-events: none;
@@ -56,8 +50,8 @@
   }
   .confetti {
     position: absolute;
-    width: 10px;
-    height: 10px;
+    width: 8px;
+    height: 8px;
     background: #ff69b4;
     border-radius: 50%;
     animation: confetti-fall 5s linear forwards;
@@ -73,57 +67,55 @@
 
 <div class="small-hearts" id="hearts"></div>
 
-<div class="container">
-  <div class="message" id="message">
-    <div>Hey Kema...</div>
-    <div>I've been thinking about you a lot lately 💕</div>
-    <div>These past few days you've made me so happy</div>
-    <div>and I'd love for us to be more than friends.</div>
-    <div class="highlight">Will you be my girlfriend?</div>
-  </div>
+<div class="message" id="message">
+  <div>Hey Kema...</div>
+  <div>I've been thinking about you a lot lately 💕</div>
+  <div>These past few days you've made me so happy</div>
+  <div>and I'd love for us to be more than friends.</div>
+  <div class="highlight">Will you be my girlfriend?</div>
 </div>
 
 <script>
-  const message = document.getElementById('message');
-  const heartsContainer = document.getElementById('hearts');
+const message = document.getElementById('message');
+const heartsContainer = document.getElementById('hearts');
 
-  function revealMessage() {
-    message.classList.add('shown');
-    startFloatingHearts();
-  }
+function revealMessage() {
+  message.classList.add('shown');
+  startFloatingHearts();
+}
 
-  document.addEventListener('DOMContentLoaded', () => {
-    setTimeout(revealMessage, 300); 
-  });
+document.addEventListener('DOMContentLoaded', () => {
+  setTimeout(revealMessage, 300);
+});
 
-  function startFloatingHearts() {
-    setInterval(() => {
-      const heart = document.createElement('div');
-      heart.className = 'heart-float';
-      heart.innerHTML = '💗';
-      heart.style.left = Math.random() * 100 + 'vw';
-      heart.style.fontSize = (14 + Math.random() * 12) + 'px';
-      heart.style.animationDuration = (12 + Math.random() * 10) + 's';
-      heartsContainer.appendChild(heart);
-      setTimeout(() => heart.remove(), 25000);
-    }, 1200);
-  }
+function startFloatingHearts() {
+  setInterval(() => {
+    const heart = document.createElement('div');
+    heart.className = 'heart-float';
+    heart.innerHTML = '💗';
+    heart.style.left = Math.random() * 100 + 'vw';
+    heart.style.fontSize = (12 + Math.random() * 8) + 'px';
+    heart.style.animationDuration = (12 + Math.random() * 10) + 's';
+    heartsContainer.appendChild(heart);
+    setTimeout(() => heart.remove(), 25000);
+  }, 1200);
+}
 
-  document.body.addEventListener('click', () => {
-    if (message.classList.contains('shown')) {
-      for (let i = 0; i < 40; i++) {
-        setTimeout(() => {
-          const conf = document.createElement('div');
-          conf.className = 'confetti';
-          conf.style.left = Math.random() * 100 + 'vw';
-          conf.style.background = ['#ff69b4', '#ffb6c1', '#ff1493'][Math.floor(Math.random()*3)];
-          conf.style.animationDuration = (4 + Math.random() * 3) + 's';
-          heartsContainer.appendChild(conf);
-          setTimeout(() => conf.remove(), 10000);
-        }, i * 80);
-      }
+document.body.addEventListener('click', () => {
+  if (message.classList.contains('shown')) {
+    for (let i = 0; i < 40; i++) {
+      setTimeout(() => {
+        const conf = document.createElement('div');
+        conf.className = 'confetti';
+        conf.style.left = Math.random() * 100 + 'vw';
+        conf.style.background = ['#ff69b4', '#ffb6c1', '#ff1493'][Math.floor(Math.random()*3)];
+        conf.style.animationDuration = (4 + Math.random() * 3) + 's';
+        heartsContainer.appendChild(conf);
+        setTimeout(() => conf.remove(), 10000);
+      }, i * 80);
     }
-  });
+  }
+});
 </script>
 
 </body>
