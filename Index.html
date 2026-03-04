@@ -36,7 +36,7 @@
       transform: translateY(30px);
       transition: all 1.8s ease-out;
       font-family: 'Playfair Display', serif;
-      font-size: 2.2rem;          /* Medium size - elegant but not huge */
+      font-size: 2.2rem;
       line-height: 1.5;
       color: #4a4a4a;
       max-width: 90%;
@@ -91,29 +91,25 @@
     <div class="message" id="message">
       Hey Kema...<br>
       I've been thinking about you a lot lately 💕<br>
-      This past few days you've made me so happy <br>
-     and I'd love for us to be more than friends.<br>
-      will you be my girlfriend?
+      These past few days you've made me so happy <br>
+      and I'd love for us to be more than friends.<br>
+      <span class="highlight">Will you be my girlfriend?</span>
     </div>
   </div>
 
   <script>
     const message = document.getElementById('message');
     const heartsContainer = document.getElementById('hearts');
-    let revealed = false;
 
     function revealMessage() {
-      if (revealed) return;
-      revealed = true;
       message.classList.add('shown');
       startFloatingHearts();
     }
 
-    // Reveal on click or auto after delay
-    document.body.addEventListener('click', revealMessage);
-    setTimeout(() => {
-      if (!revealed) revealMessage();
-    }, 1500);
+    // Reveal message automatically when page loads
+    window.addEventListener('load', () => {
+      setTimeout(revealMessage, 800); // small delay for smooth effect
+    });
 
     function startFloatingHearts() {
       setInterval(() => {
@@ -121,16 +117,16 @@
         heart.className = 'heart-float';
         heart.innerHTML = '💗';
         heart.style.left = Math.random() * 100 + 'vw';
-        heart.style.animationDuration = (12 + Math.random() * 10) + 's'; // slower for calm
-        heart.style.animationDelay = Math.random() * 4 + 's';
+        heart.style.fontSize = (14 + Math.random() * 12) + 'px';
+        heart.style.animationDuration = (12 + Math.random() * 10) + 's';
         heartsContainer.appendChild(heart);
         setTimeout(() => heart.remove(), 25000);
-      }, 1200); // less frequent
+      }, 1200);
     }
 
-    // Light confetti on click after reveal
+    // Light confetti on click after message is revealed
     document.body.addEventListener('click', () => {
-      if (revealed) {
+      if (message.classList.contains('shown')) {
         for (let i = 0; i < 40; i++) {
           setTimeout(() => {
             const conf = document.createElement('div');
